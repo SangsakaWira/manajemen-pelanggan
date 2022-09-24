@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>E-Commerce Admin | Home Page</title>
+</head>
+
+<body>
+    <div class="container">
+        <h3 style="text-align: center;margin:10px">Data Pelanggan</h3>
+        <div class="table-responsive" style="text-align: center;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Alamat</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Dompet</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let i = 0;i < pelanggan.length ;i++){ %>
+                    <% let singlePelanggan = pelanggan[i] %>
+                    <tr>
+                        <th scope="row"><%= singlePelanggan.id %></th>
+                        <td><%= singlePelanggan.nama %></td>
+                        <td><%= singlePelanggan.alamat %></td>
+                        <td><%= singlePelanggan.email %></td>
+                        <td><%= singlePelanggan.dompet %></td>
+                        <td><a style="text-decoration:none"
+                                href="/halaman/detail-pelanggan/<%= singlePelanggan.id %>"><button
+                                    style="text-decoration:none" class="btn btn-primary"
+                                    style="margin-right:5px">Detail</button></a>
+                            <a style="text-decoration:none" href="/halaman/update-pelanggan/<%= singlePelanggan.id %>">
+                                <button class="btn btn-success" style="margin-right:5px">Update</button>
+                            </a>
+
+                            <button class="btn btn-danger"
+                                onclick="confirmDelete(<%= singlePelanggan.id %>)">Delete</button>
+
+                        </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+
+        <a href="/halaman/tambah-pelanggan">
+            <button class="btn btn-primary" style="margin-top: 10px;width:100%">Tambah Pelanggan Baru</button>
+        </a>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        function confirmDelete(id) {
+            let text = "Press a button!\nEither OK or Cancel.";
+            if (confirm(text) == true) {
+                text = "You pressed OK! Deleting Id " + id;
+                $.get(`http://localhost:3000/delete-pelanggan/${id}`, function (data, status) {
+                    location.replace("http://localhost:3000/")
+                });
+            } else {
+                text = "You canceled!";
+            }
+            alert(text)
+        }
+    </script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
