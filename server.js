@@ -23,7 +23,7 @@ app.get("/",(req,res)=>{
 app.use("/halaman",pageRouter)
 app.use("/pelanggan",pelangganRouter)
 
-app.listen(3000, (err) => {
+app.listen(process.env.PORT, (err) => {
     if (err) {
         console.log("Error is happening")
     }
