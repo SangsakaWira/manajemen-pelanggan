@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const express = require("express")
 const bodyParser = require("body-parser")
+let port_number = process.env.PORT || 8080
 
 // ROUTES
 const pageRouter = require("./routes/page")
@@ -23,7 +24,7 @@ app.get("/",(req,res)=>{
 app.use("/halaman",pageRouter)
 app.use("/pelanggan",pelangganRouter)
 
-app.listen(process.env.PORT, (err) => {
+app.listen(port_number, (err) => {
     if (err) {
         console.log("Error is happening")
     }
