@@ -13,7 +13,6 @@ Untuk menjalankan aplikasi ini cukup dengan cara menjalankan langkah sebagai ber
     DATABASE=ecommerce
     PASSWORD=12345
     PORT=5433
-
     ```
 
 4. Jalankan aplikasi dengan mengetik ``` node server.js ```
