@@ -3,9 +3,9 @@ const {
 } = require('sequelize');
 
 // Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize('ecommerce', 'yomama', 'x71hjkauiAjakLjjkb', {
-    host: '13.215.253.155',
-    port: 5433,
+const sequelize = new Sequelize(process.env.DATABASE, process.env.USERNAME, process.env.PASSWORD, {
+    host: process.env.HOST,
+    port: process.env.DB_PORT,
     dialect: 'postgres'
 });
 
