@@ -2,23 +2,39 @@ const client = require("../config/db")
 const pelanggan = require("../model/pelanggan")
 
 exports.getAllPelanggan = (req, res) => {
-    client.query('SELECT * FROM pelanggan', (err, doc) => {
-        if (err) {
-            console.log(err.stack)
-        } else {
-            res.send(doc.rows)
-        }
+    
+    // client.query('SELECT * FROM pelanggan', (err, doc) => {
+    //     if (err) {
+    //         console.log(err.stack)
+    //     } else {
+    //         res.send(doc.rows)
+    //     }
+    // })
+
+    pelanggan.findAll().then(doc=>{
+        res.send(doc)
     })
 }
 
 exports.getPelangganById = (req, res) => {
     const id = req.params.id_pelanggan
-    client.query(`SELECT * FROM pelanggan WHERE id=${id} `, (err, doc) => {
-        if (err) {
-            console.log(err.stack)
-        } else {
-            res.send(doc.rows)
+    
+    // client.query(`SELECT * FROM pelanggan WHERE id=${id} `, (err, doc) => {
+    //     if (err) {
+    //         console.log(err.stack)
+    //     } else {
+    //         res.send(doc.rows)
+    //     }
+    // })
+
+    pelanggan.findOne({
+        where:{
+            id:id
         }
+    }).then(doc=>{
+        doc ? res.send(doc) : res.send({
+            message:"no pelanggan found"
+        })
     })
 }
 

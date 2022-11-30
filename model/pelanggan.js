@@ -4,7 +4,7 @@ const {
 } = require('sequelize');
 const sequelize = require("../config/database")
 
-const Pelanggan = sequelize.define('User', {
+const Pelanggan = sequelize.define('pelanggan', {
 
   id: {
     type: DataTypes.INTEGER,
@@ -25,6 +25,9 @@ const Pelanggan = sequelize.define('User', {
   }
 }, {
   // Other model options go here
+  tableName:"pelanggan",
+  createdAt:false,
+  updatedAt:false
 });
 
-exports.module = Pelanggan
+module.exports = Pelanggan

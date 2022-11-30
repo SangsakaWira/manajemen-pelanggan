@@ -5,7 +5,6 @@ exports.isAdmin = (req,res,next) =>{
         if (err) {
             console.log(err.stack)
         } else {
-            console.log(doc.rows[0].role)
             if(doc.rows[0].role === 1){
                 next()
             }else{
@@ -16,5 +15,9 @@ exports.isAdmin = (req,res,next) =>{
 }
 
 exports.isAuthenticated = (req,res,next) =>{
-    
+    if(req.session.isAuthenticated === "true"){
+        next()
+    }else{
+        return res.redirect("/halaman/login")
+    }
 }

@@ -25,7 +25,11 @@ exports.getPelangganById = (req, res) => {
     })
 }
 exports.tambahPelanggan = (req, res) => {
-    res.render('tambah-pelanggan')
+    try{
+        return res.render('tambah-pelanggan')
+    }catch(err){
+        return res.redirect("/login")
+    }
 }
 exports.updatePelanggan = (req, res) => {
     client.query(`SELECT * FROM pelanggan WHERE id=${req.params.id} `, (err, doc) => {
@@ -37,4 +41,11 @@ exports.updatePelanggan = (req, res) => {
             })
         }
     })
+}
+
+exports.login = (req,res) =>{
+    return res.render("login")
+}
+exports.register = (req,res) =>{
+    return res.render("register")
 }
